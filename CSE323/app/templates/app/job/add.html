@@ -1,0 +1,35 @@
+﻿{% extends "app/layout.html" %}
+
+{% block content %}
+
+    <h1>New Job</h1>
+
+    <hr>
+
+    <form action="{% url 'addJob' %}" method="POST">
+        {% csrf_token %}
+        <div>
+            <label for="user">User</label>
+            <input type="text" name="user">
+        </div>
+        <div>
+            <label for="userID">UserID</label>
+            <input type="text" name="userID">
+        </div>
+        <div>
+            <label for="job">Job</label>
+            <input type="text" name="job">
+        </div>
+        <div>
+            <label for="priority">Priority</label>
+            <input type="text" name="priority" value="1000">
+        </div>
+        <div>
+            <a href="{% url 'getCurrentJobs' %}" type="button">
+                Back
+            </a>
+            <input type="submit" value="Submit">
+        </div>
+    </form>
+
+{% endblock %}

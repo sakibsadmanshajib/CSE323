@@ -16,3 +16,12 @@ class BootstrapAuthenticationForm(AuthenticationForm):
                                widget=forms.PasswordInput({
                                    'class': 'form-control',
                                    'placeholder':'Password'}))
+
+class AddJob(forms.Form):
+    user = forms.CharField(label='user')
+    userID = forms.CharField(label='userID')
+    job = forms.CharField(label='job')
+    priority = forms.IntegerField(label='priority')
+
+class CompleteJob(forms.Form):
+    jobID = forms.CharField(label='jobID')

@@ -3,16 +3,12 @@ Definition of urls for CSE323.
 """
 
 from datetime import datetime
-from django.urls import path
+from django.urls import include, path
 from django.contrib import admin
 from django.contrib.auth.views import LoginView, LogoutView
 from app import forms, views
 
-
 urlpatterns = [
-    path('', views.home, name='home'),
-    path('contact/', views.contact, name='contact'),
-    path('about/', views.about, name='about'),
     path('login/',
          LoginView.as_view
          (
@@ -27,4 +23,11 @@ urlpatterns = [
          name='login'),
     path('logout/', LogoutView.as_view(next_page='/'), name='logout'),
     path('admin/', admin.site.urls),
+
+    path('', views.home, name='home'),
+    path('contact/', views.contact, name='contact'),
+    path('about/', views.about, name='about'),
+    path('jobs/', views.getCurrentJobs, name='getCurrentJobs'),
+    path('jobs/add/', views.addJob, name='addJob'),
+    path('pastjobs/', views.getPastJobs, name='getPastJobs'),
 ]

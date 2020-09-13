@@ -32,3 +32,18 @@ class ViewTest(TestCase):
         """Tests the about page."""
         response = self.client.get('/about')
         self.assertContains(response, 'About', 3, 200)
+
+    def test_job(self):
+        """Tests the about page."""
+        response = self.client.get('/jobs')
+        self.assertContains(response, 'Jobs', 3, 200)
+
+    def test_job_add(self):
+        """Tests the about page."""
+        response = self.client.get('/jobs/add')
+        self.assertContains(response, 'Add Job', 3, 200)
+
+    def test_past_job(self):
+        """Tests the about page."""
+        response = self.client.get('/pastjobs')
+        self.assertContains(response, 'Past Jobs', 3, 200)
