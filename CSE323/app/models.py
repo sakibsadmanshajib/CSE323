@@ -13,4 +13,4 @@ class Job(models.Model):
     state = models.CharField(max_length=32)
 
     def __str__(self):
-        return self.user + self.job
+        return self.user + " - " + self.job

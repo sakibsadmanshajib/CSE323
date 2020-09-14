@@ -29,5 +29,6 @@ urlpatterns = [
     path('about/', views.about, name='about'),
     path('jobs/', views.getCurrentJobs, name='getCurrentJobs'),
     path('jobs/add/', views.addJob, name='addJob'),
+    path('jobs/update/', views.updateJobs, name='updateJobs'),
     path('pastjobs/', views.getPastJobs, name='getPastJobs'),
 ]

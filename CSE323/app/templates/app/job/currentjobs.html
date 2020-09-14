@@ -2,6 +2,71 @@
 
 {% block content %}
 
+<a type="button" href="{% url 'addJob' %}">Add Job</a>
 
+{% if currentJobs %}
+
+<form action="{% url 'updateJobs' %}" method="POST">
+    <div>
+        {% csrf_token %}
+        <select title="job" id="job" name="jobID">
+            {% for cjob in currentJobs %}
+            <option value="{{ cjob.id }}">
+                {{ cjob }}
+            </option>
+            {% endfor %}
+
+        </select>
+        <input type="submit" value="Served">
+    </div>
+</form>
+
+<table border="1">
+    <tbody>
+        {% if servingJobs %}
+        <tr>
+            <td>Serving</td>
+            {% for job in servingJobs %}
+                <td>{{ job }}</td>
+            {% endfor %}
+        </tr>
+        {% else %}
+        <tr>
+            <td>Serving</td>
+            <td>No Job</td>
+        </tr>
+        {% endif %}
+        {% if inLineJobs %}
+        <tr>
+            <td>In Line</td>
+            {% for linejob in inLineJobs %}
+                <td>{{ linejob }}</td>
+            {% endfor %}
+        </tr>
+        {% else %}
+        <tr>
+            <td>In Line</td>
+            <td>No Job</td>
+        </tr>
+        {% endif %}
+        {% if waitingJobs %}
+        <tr>
+            <td>Waiting</td>
+            {% for waitjob in waitingJobs %}
+                <td>{{ waitjob }}</td>
+            {% endfor %}
+        </tr>
+        {% else %}
+        <tr>
+            <td>Waiting</td>
+            <td>No Job</td>
+        </tr>
+        {% endif %}
+    </tbody>
+</table>
+
+{% else %}
+    Sorry all jobs are completed.
+{% endif %}
 
 {% endblock %}

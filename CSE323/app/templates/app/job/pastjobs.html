@@ -2,6 +2,22 @@
 
 {% block content %}
 
+{% if pastJobs %}
 
+<table border="1">
+    <tbody>
+        <tr>Completed Jobs</tr>
+        {% for job in pastJobs %}
+        <tr>
+            <td>{{ job }}</td>
+            <td>{{ job.timestamp }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% else %}
+    Sorry no jobs were completed.
+{% endif %}
 
 {% endblock %}

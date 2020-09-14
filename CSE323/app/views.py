@@ -53,7 +53,7 @@ def addJob(request):
 
     if not currentJobs:
         thestate = 'serving'
-    elif len(currentJobs) > 0:
+    elif len(currentJobs) > 0 and len(currentJobs) < 10:
         thestate = 'inline'
     else:
         thestate = 'waiting'
@@ -81,9 +81,12 @@ def addJob(request):
 
 def getCurrentJobs(request):
     
+    servingJobs = Job.objects.filter(state='serving').order_by('timestamp')
+    inLineJobs = Job.objects.filter(state='inline').order_by('timestamp')
+    waitingJobs = Job.objects.filter(state='waiting').order_by('timestamp')
     currentJobs = Job.objects.exclude(state='completed').order_by('timestamp')
 
-    return render(request, 'app/job/currentjobs.html', {'currentJobs' : currentJobs})
+    return render(request, 'app/job/currentjobs.html', {'servingJobs' : servingJobs, 'inLineJobs' : inLineJobs, 'waitingJobs' : waitingJobs, 'currentJobs': currentJobs})
 
 def getPastJobs(request):
     
@@ -97,15 +100,15 @@ def updateJobs(request):
 
     if form.is_valid():
         job = Job.objects.get(id=form.cleaned_data['jobID'])
-        job.state = 'complete'
+        job.state = 'completed'
         job.save()
         currentJobs = Job.objects.exclude(state='completed').order_by('timestamp')
-        if currentJobs is not None:
+        if currentJobs:
             currentJobs[0].state = 'serving'
-            if currentJobs[10] is not None:
-                currentJobs[10].state = 'inline'
-                currentJobs[10].save()
             currentJobs[0].save()
+            if len(currentJobs)-1 > 0 and currentJobs[len(currentJobs)-1]:
+                currentJobs[len(currentJobs)-1].state = 'inline'
+                currentJobs[len(currentJobs)-1].save()
         return redirect('getCurrentJobs')
     else:
         return redirect('getCurrentJobs')
