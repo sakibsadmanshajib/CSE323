@@ -2,34 +2,42 @@
 
 {% block content %}
 
-    <h1>New Job</h1>
+<section class="hero is-primary">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title">
+          New Job
+        </h1>
+      </div>
+    </div>
+</section>
 
-    <hr>
-
+<div class="section mx-5 px-5">
     <form action="{% url 'addJob' %}" method="POST">
         {% csrf_token %}
-        <div>
-            <label for="user">User</label>
+        <div class="field">
+            <label for="user" class="label">User</label>
             <input type="text" name="user">
         </div>
-        <div>
-            <label for="userID">UserID</label>
+        <div class="field">
+            <label for="userID" class="label">UserID</label>
             <input type="text" name="userID">
         </div>
-        <div>
-            <label for="job">Job</label>
+        <div class="field">
+            <label for="job" class="label">Job</label>
             <input type="text" name="job">
         </div>
-        <div>
-            <label for="priority">Priority</label>
+        <div class="field">
+            <label for="priority" class="label">Priority</label>
             <input type="text" name="priority" value="1000">
         </div>
         <div>
-            <a href="{% url 'getCurrentJobs' %}" type="button">
+            <a href="{% url 'getCurrentJobs' %}" type="button" class="button is-light">
                 Back
             </a>
-            <input type="submit" value="Submit">
+            <input type="submit" value="Submit" class="button is-link">
         </div>
     </form>
+</div>
 
 {% endblock %}

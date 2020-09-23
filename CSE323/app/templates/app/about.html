@@ -2,9 +2,21 @@
 
 {% block content %}
 
-<h2>{{ title }}.</h2>
-<h3>{{ message }}</h3>
+<section class="hero is-primary">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        {{ title }}
+      </h1>
+      <h2 class="subtitle">
+        {{ message }}
+      </h2>
+    </div>
+    <section class="section px-6">
+      <p>Use this area to provide additional information.</p>
+    </secction>
+  </div>
+</section>
 
-<p>Use this area to provide additional information.</p>
 
 {% endblock %}

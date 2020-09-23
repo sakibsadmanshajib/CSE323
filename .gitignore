@@ -480,4 +480,9 @@ dmypy.json
 cython_debug/
 
 # Static
-static/
+# static/
+CSE323/app/static/content/bulma-0.9.0/
+CSE323/app/static/content/site.css.map
+
+CSE323/node_modules
+CSE323/package-lock.json

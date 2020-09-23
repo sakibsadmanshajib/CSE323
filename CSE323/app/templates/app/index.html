@@ -2,28 +2,64 @@
 
 {% block content %}
 
-<div class="jumbotron">
-    <h1>CSE323 Project</h1>
-    <p class="lead">Bank Queue Management Application</p>
-    <p><a href="https://github.com/sakibsadmanshajib/CSE323" class="btn btn-primary btn-large">GitHub repo &raquo;</a></p>
+<div class="section px-6 py-1">
+<div class="tile is-ancestor is-vertical">
+    <div class="tile is-parent is-vertical">
+        <div class="section">
+            <p class="title is-2">CSE323 Project</p>
+            <div class="content">
+                Bank Queue Management Application
+            </div>
+        </div>
+    </div>
+    <div class="tile is-parent home-section">
+        <a class="tile is-child" href="{% url 'getCurrentJobs' %}">
+            <div class="card custom-card mr-5">
+                <div class="card-content">
+                    <div class="media">
+                        <div class="media-content">
+                            <p class="title is-4">View Current Jobs</p>
+                        <!-- <p class="subtitle is-6">@johnsmith</p> -->
+                        </div>
+                    </div>
+                    <div class="content">
+                        Shows the queue of jobs/customers inside the bank.
+                    </div>
+                </div>
+            </div>
+        </a>
+        <a class="tile is-child" href="{% url 'addJob' %}">
+            <div class="card custom-card mr-5">
+                <div class="card-content">
+                    <div class="media">
+                        <div class="media-content">
+                            <p class="title is-4">Add a new Job</p>
+                        <!-- <p class="subtitle is-6">@johnsmith</p> -->
+                        </div>
+                    </div>
+                    <div class="content">
+                        Add a new Job to the queue.
+                    </div>
+                </div>
+            </div>
+        </a>
+        <a class="tile is-child" href="{% url 'getPastJobs' %}">
+            <div class="card custom-card">
+                <div class="card-content">
+                    <div class="media">
+                        <div class="media-content">
+                            <p class="title is-4">View Past Jobs</p>
+                        <!-- <p class="subtitle is-6">@johnsmith</p> -->
+                        </div>
+                    </div>
+                    <div class="content">
+                        Shows the list of completed jobs.
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
 </div>
-
-<div class="row">
-    <div class="col-md-4">
-        <h2>View Current Jobs</h2>
-        <p>Shows the queue of jobs/customers inside the bank.</p>
-        <p><a class="btn btn-default" href="{% url 'getCurrentJobs' %}">Current Jobs &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Add a new Job</h2>
-        <p>Add a new Job to the queue.</p>
-        <p><a class="btn btn-default" href="{% url 'addJob' %}">Add Job &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>View Past Jobs</h2>
-        <p>Shows the list of completed jobs.</p>
-        <p><a class="btn btn-default" href="{% url 'getPastJobs' %}">Past Jobs &raquo;</a></p>
-    </div>
 </div>
 
 {% endblock %}

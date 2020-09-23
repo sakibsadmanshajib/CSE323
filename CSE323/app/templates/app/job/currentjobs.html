@@ -2,68 +2,78 @@
 
 {% block content %}
 
-<a type="button" href="{% url 'addJob' %}">Add Job</a>
+
+<section class="hero is-primary">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title">
+          Current Jobs
+        </h1>
+      </div>
+    </div>
+</section>
+
 
 {% if currentJobs %}
-
+<section class="section mx-3">
+<a type="button" class="button is-link mx-3" href="{% url 'addJob' %}">Add Job</a>
+<hr>
 <form action="{% url 'updateJobs' %}" method="POST">
-    <div>
-        {% csrf_token %}
-        <select title="job" id="job" name="jobID">
-            {% for cjob in currentJobs %}
-            <option value="{{ cjob.id }}">
-                {{ cjob }}
-            </option>
-            {% endfor %}
-
-        </select>
-        <input type="submit" value="Served">
+    <div class="tile is-parent">
+        <div class="field is-child">
+            {% csrf_token %}
+            <div class="control">
+                <div class="select">
+                    <select title="job" id="job" name="jobID">
+                        {% for cjob in currentJobs %}
+                        <option value="{{ cjob.id }}">
+                            {{ cjob }}
+                        </option>
+                        {% endfor %}
+            
+                    </select>
+                </div>
+            </div>
+        </div>
+        <input type="submit" class="is-child button is-link ml-4" value="Served">
     </div>
 </form>
 
-<table border="1">
+<table class="table is-fullwidth">
     <tbody>
-        {% if servingJobs %}
         <tr>
-            <td>Serving</td>
-            {% for job in servingJobs %}
-                <td>{{ job }}</td>
-            {% endfor %}
+            <th>Serving</th>
+            {% if servingJobs %}
+                {% for job in servingJobs %}
+                    <td>{{ job }}</td>
+                {% endfor %}
+            {% else %}
+                <td>No Job</td>
+            {% endif %}
         </tr>
-        {% else %}
         <tr>
-            <td>Serving</td>
-            <td>No Job</td>
+            <th>In Line</th>
+            {% if inLineJobs %}
+                {% for linejob in inLineJobs %}
+                    <td>{{ linejob }}</td>
+                {% endfor %}
+            {% else %}
+                <td>No Job</td>
+            {% endif %}
         </tr>
-        {% endif %}
-        {% if inLineJobs %}
         <tr>
-            <td>In Line</td>
-            {% for linejob in inLineJobs %}
-                <td>{{ linejob }}</td>
-            {% endfor %}
+            <th>Waiting</th>
+            {% if waitingJobs %}
+                {% for waitjob in waitingJobs %}
+                    <td>{{ waitjob }}</td>
+                {% endfor %}
+            {% else %}
+                <td>No Job</td>
+            {% endif %}
         </tr>
-        {% else %}
-        <tr>
-            <td>In Line</td>
-            <td>No Job</td>
-        </tr>
-        {% endif %}
-        {% if waitingJobs %}
-        <tr>
-            <td>Waiting</td>
-            {% for waitjob in waitingJobs %}
-                <td>{{ waitjob }}</td>
-            {% endfor %}
-        </tr>
-        {% else %}
-        <tr>
-            <td>Waiting</td>
-            <td>No Job</td>
-        </tr>
-        {% endif %}
     </tbody>
 </table>
+</section>
 
 {% else %}
     Sorry all jobs are completed.

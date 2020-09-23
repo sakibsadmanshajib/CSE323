@@ -2,20 +2,37 @@
 
 {% block content %}
 
+
+<section class="hero is-primary">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title">
+          Past Jobs
+        </h1>
+      </div>
+    </div>
+</section>
+
 {% if pastJobs %}
 
-<table border="1">
-    <tbody>
-        <tr>Completed Jobs</tr>
-        {% for job in pastJobs %}
-        <tr>
-            <td>{{ job }}</td>
-            <td>{{ job.timestamp }}</td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
-
+<section class="section mx-5">
+    <table class="table is-hoverable is-fullwidth" border="1">
+        <thead>
+            <tr>
+                <th>Completed Jobs</th>
+                <th>Completion Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for job in pastJobs %}
+            <tr>
+                <td>{{ job }}</td>
+                <td>{{ job.timestamp }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
 {% else %}
     Sorry no jobs were completed.
 {% endif %}

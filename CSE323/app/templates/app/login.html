@@ -2,38 +2,47 @@
 
 {% block content %}
 
-<h2>{{ title }}</h2>
-<div class="row">
-    <div class="col-md-8">
-        <section id="loginForm">
-            <form action="." method="post" class="form-horizontal">
-                {% csrf_token %}
-                <h4>Use a local account to log in.</h4>
-                <hr />
-                <div class="form-group">
-                    <label for="id_username" class="col-md-2 control-label">User name</label>
-                    <div class="col-md-10">
-                        {{ form.username }}
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="id_password" class="col-md-2 control-label">Password</label>
-                    <div class="col-md-10">
-                        {{ form.password }}
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="hidden" name="next" value="/" />
-                        <input type="submit" value="Log in" class="btn btn-default" />
-                    </div>
-                </div>
-                {% if form.errors %}
-                <p class="validation-summary-errors">Please enter a correct user name and password.</p>
-                {% endif %}
-            </form>
-        </section>
+<!-- <h2>{{ title }}</h2> -->
+<section class="hero is-primary">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title">
+          {{ title }}
+        </h1>
+        <h2 class="subtitle">
+            Use a local account to log in.
+        </h2>
+      </div>
     </div>
+</section>
+<div class="section py-0 mx-6 px-5">
+    <section id="loginForm">
+        <form action="." method="post" class="form-horizontal">
+            {% csrf_token %}
+            <hr />
+            <div class="field">
+                <label for="id_username" class="label">User name</label>
+                <div class="control">
+                    {{ form.username }}
+                </div>
+            </div>
+            <div class="field">
+                <label for="id_password" class="label">Password</label>
+                <div class="col-md-10">
+                    {{ form.password }}
+                </div>
+            </div>
+            <div class="field is-grouped">
+                <div class="control">
+                    <input type="hidden" name="next" value="/" />
+                    <input type="submit" value="Log in" class="button is-link" />
+                </div>
+            </div>
+            {% if form.errors %}
+            <p class="validation-summary-errors">Please enter a correct user name and password.</p>
+            {% endif %}
+        </form>
+    </section>
     <div class="col-md-4">
         <section id="socialLoginForm"></section>
     </div>
