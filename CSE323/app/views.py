@@ -8,6 +8,7 @@ from django.http import HttpRequest
 from .models import Job
 from .forms import AddJob, CompleteJob
 from django.utils import timezone
+from django.contrib.auth.decorators import login_required, user_passes_test
 
 def home(request):
     """Renders the home page."""
@@ -47,6 +48,7 @@ def about(request):
         }
     )
 
+@login_required
 def addJob(request):
 
     currentJobs = Job.objects.exclude(state='completed')
@@ -88,12 +90,14 @@ def getCurrentJobs(request):
 
     return render(request, 'app/job/currentjobs.html', {'servingJobs' : servingJobs, 'inLineJobs' : inLineJobs, 'waitingJobs' : waitingJobs, 'currentJobs': currentJobs})
 
+@user_passes_test(lambda u: u.is_superuser)
 def getPastJobs(request):
     
     pastJobs = Job.objects.filter(state='completed').order_by('timestamp')
 
     return render(request, 'app/job/pastjobs.html', {'pastJobs' : pastJobs})
 
+@user_passes_test(lambda u: u.is_superuser)
 def updateJobs(request):
 
     form = CompleteJob(request.POST)
