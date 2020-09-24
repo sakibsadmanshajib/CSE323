@@ -28,12 +28,11 @@
                     <li><a href="{% url 'about' %}">About</a></li>
                     <li><a href="{% url 'contact' %}">Contact</a></li>
                 </ul>
-                {% include 'app/loginpartial.html' %}
             </div>
         </div> -->
         <nav class="navbar px-6" role="navigation" aria-label="main navigation">
             <div class="navbar-brand">
-              <a class="navbar-item" href="https://bulma.io">
+              <a class="navbar-item" href="{% url 'home' %}">
                 <strong>CSE323</strong>
               </a>
           
